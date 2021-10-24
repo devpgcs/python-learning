@@ -25,7 +25,6 @@ def ask_to_use_previous_result(previous_results):
 
 
 def print_result_interface(result):
-  
   print(border)
   print("\t RESULT: ", result)
   print(border)

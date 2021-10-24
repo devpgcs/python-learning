@@ -1,4 +1,3 @@
-
 import utils
 
 history = []
@@ -6,28 +5,29 @@ previous_results = []
 
 
 def should_calculate(operation):
-  current_operation = utils.operations[operation]
+  current_operation = utils.operations[operation][0]
+  current_operation_symbol = utils.operations[operation][1]
   user_wants_to_use_previous_result = utils.ask_to_use_previous_result(previous_results)
 
   if user_wants_to_use_previous_result:
-    numberOne = previous_results[-1]
+    number_one = previous_results[-1]
   else:
-    numberOne = input(f"Enter the first number to {current_operation[0]}: ").lstrip()
+    number_one = input(f"Enter the first number to {current_operation}: ").lstrip()
 
-  numberTwo = input(f"Enter the second number to {current_operation[0]}: ").lstrip()
+  number_two = input(f"Enter the second number to {current_operation}: ").lstrip()
   
   # Make the calculation depending of the `operation` index
   if operation == 0:
-    result = float(numberOne) + float(numberTwo)
-  if operation == 1:
-    result = ((float(numberOne) * 100) - (float(numberTwo) * 100)) / 100
-  if operation == 2:
-    result = float(numberOne) * float(numberTwo)
-  if operation == 3:
-    result = float(numberOne) / float(numberTwo)
+    result = float(number_one) + float(number_two)
+  elif operation == 1:
+    result = ((float(number_one) * 100) - (float(number_two) * 100)) / 100
+  elif operation == 2:
+    result = float(number_one) * float(number_two)
+  elif operation == 3:
+    result = float(number_one) / float(number_two)
 
   # We need to add every calculation to the history list, and display in a readable way 
-  result_string = f"{numberOne} {current_operation[1]} {numberTwo} = {result}"
+  result_string = f"{number_one} {current_operation_symbol} {number_two} = {result}"
   history.append(result_string)
 
   # Also, we need to apend the current result to the `previous_results` list
